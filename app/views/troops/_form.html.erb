@@ -1,0 +1,47 @@
+<%= javascript_include_tag('math') %>
+
+<%= form_for @troop do |f| %>
+  <% if @troop.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@troop.errors.count, "error") %> prohibited
+      this troop from being saved:</h2>
+    <ul>
+    <% @troop.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+<p>
+  <%= f.label :Type_Of_Troop %><br>
+  <%= f.text_field :typeoftroop %>
+</p>
+
+<p>
+  <%= f.label :level %><br>
+  <%= f.text_field :level %>
+</p>
+
+<p>
+  <%= f.label :quantity %><br>
+  <%= f.text_field :quantity %>
+</p>
+
+<p>
+  <%= f.label :Training_Cost %><br>
+  <%= f.text_field :costToTrain %>
+</p>
+<script>
+  $('[type="text"]').change(function(){
+    var typeTroop = $('#troop_typeoftroop').val();
+    var levTroop = parseInt($('#troop_level').val());
+    var quantityTroops = parseInt($('#troop_quantity').val());
+    var finalCost = calcCost(typeTroop, levTroop, quantityTroops);
+    $('#troop_costToTrain').val(finalCost);
+  });
+</script>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

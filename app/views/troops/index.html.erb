@@ -1,0 +1,29 @@
+<%= javascript_include_tag('math') %>
+<h1>Your army</h1>
+ 
+<table>
+  <tr align="center">
+    <th align="center">Type</th>
+    <th align="center">Level</th>
+    <th align="center">Quantity</th>
+    <th align="center">Cost To Train</th>
+  </tr>
+ 
+  <% @troops.each do |troop| %>
+    <tr align="center">
+      <td align="center"><%= troop.typeoftroop %></td>
+      <td align="center"><%= troop.level %></td>
+      <td align="center"><%= troop.quantity %></td>
+      <td align="center"><%= troop.costToTrain %></td>
+      <td align="center"><%= link_to 'Show', troop %></td>
+      <td align="center"><%= link_to 'Edit', edit_troop_path(troop) %></td>
+      <td align="center"><%= link_to 'Delete', troop_path(troop),
+          method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  <%= link_to 'New troop', new_troop_path %>
+</table>
+
+<div>
+  <%= totalCost=Troops.sum("costToTrain") %>
+</div>
