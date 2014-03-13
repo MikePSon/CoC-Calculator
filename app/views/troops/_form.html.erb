@@ -12,9 +12,24 @@
     </ul>
   </div>
   <% end %>
-<p>
+<!-- <p>
   <%= f.label :Type_Of_Troop %><br>
   <%= f.text_field :typeoftroop %>
+</p> -->
+
+<p id="typePicklist">
+  <select id = "typeSelect">
+  <option value="Barbarian" selected="selected">Barbarian</option>
+  <option value="Archer">Archer</option>
+  <option value="Goblin">Goblin</option>
+  <option value="Giant">Giant</option>
+  <option value="Wall Breaker">Wall Breaker</option>
+  <option value="Balloon">Balloon</option>
+  <option value="Wizard">Wizard</option>
+  <option value="Healer">Healer</option>
+  <option value="Dragon">Dragon</option>
+  <option value="PEKKA">PEKKA</option>
+</select>
 </p>
 
 <p>
@@ -31,16 +46,24 @@
   <%= f.label :Training_Cost %><br>
   <%= f.text_field :costToTrain %>
 </p>
+
+<p id="hiddenTroopType">
+  <%= f.text_field :typeoftroop %>
+</p>
 <script>
+$('document').ready(function(){
+  $('#hiddenTroopType').hide();
+})
   $('[type="text"]').change(function(){
-    var typeTroop = $('#troop_typeoftroop').val();
+    var typeTroop = $('#typeSelect').val();
     var levTroop = parseInt($('#troop_level').val());
     var quantityTroops = parseInt($('#troop_quantity').val());
     var finalCost = calcCost(typeTroop, levTroop, quantityTroops);
     $('#troop_costToTrain').val(finalCost);
+    $('#troop_typeoftroop').val($('#typeSelect').val());
   });
 </script>
- 
+
   <p>
     <%= f.submit %>
   </p>

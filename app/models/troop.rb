@@ -3,4 +3,6 @@ class Troop < ActiveRecord::Base
 		length: { in: 0..9 }
 	validates :quantity, presence: true,
 		length: { in: 0..9 }
+	validates :typeoftroop, presence:true
+	validates :typeoftroop, uniqueness:true
 end

@@ -2,7 +2,7 @@ class TroopsController < ApplicationController
 	def new
 	  @troop = Troop.new
 	end
-	 
+
 	def create
 		@troop = Troop.new(params[:troop].permit(:typeoftroop, :level, :quantity, :costToTrain))
 		if @troop.save
@@ -26,8 +26,8 @@ class TroopsController < ApplicationController
 
 	def update
 	  @troop = Troop.find(params[:id])
-	 
-	  if @troop.update(params[:troop].permit(:typeoftroop, :level, :quantity))
+
+	  if @troop.update(params[:troop].permit(:typeoftroop, :level, :quantity, :costToTrain))
 	    redirect_to @troop
 	  else
 	    render 'edit'
@@ -37,7 +37,7 @@ class TroopsController < ApplicationController
 	def destroy
 	  @troop = Troop.find(params[:id])
 	  @troop.destroy
-	 
+
 	  redirect_to troops_path
 	end
 
