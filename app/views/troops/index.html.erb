@@ -1,28 +1,70 @@
 <%= javascript_include_tag('math') %>
-<h1>Your army</h1>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Clan Calculator</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a target="_blank" href="http://www.clashofclansbuilder.com">Base Builder</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
-<table>
-  <tr align="center">
-    <th align="center">Type</th>
-    <th align="center">Level</th>
-    <th align="center">Quantity</th>
-    <th align="center">Cost To Train</th>
-  </tr>
-
-  <% @troops.each do |troop| %>
-    <tr align="center">
-      <td align="center"><%= troop.typeoftroop %></td>
-      <td align="center"><%= troop.level %></td>
-      <td align="center"><%= troop.quantity %></td>
-      <td align="center"><%= troop.costToTrain %></td>
-      <td align="center"><%= link_to 'Show', troop %></td>
-      <td align="center"><%= link_to 'Edit', edit_troop_path(troop) %></td>
-      <td align="center"><%= link_to 'Destroy', troop_path(troop),
-          method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-  <%= link_to 'New troop', new_troop_path %>
-</table>
-<p>
-  The total cost to train all your troops is: <strong><%= Troop.sum("costToTrain") %></strong>
-</p>
+<body>
+  <div class="container">
+    <h1>Your Army</h1>
+    <div class="row-fluid">
+      <div class="col-lg-10">
+        <table class="table table-striped">
+          <tr align="center">
+            <th class="text-center">Type</th>
+            <th class="text-center">Level</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-center">Cost To Train</th>
+            <th class="text-center">Actions</th>
+          </tr>
+          <% @troops.each do |troop| %>
+            <tr align="center">
+              <td align="center"><%= troop.typeoftroop %></td>
+              <td align="center"><%= troop.level %></td>
+              <td align="center"><%= troop.quantity %></td>
+              <td align="center"><%= troop.costToTrain %></td>
+              <td align="center">
+                <div class="btn-group btn-group-sm">
+                  <%= link_to 'View', troop, :class=> "btn btn-info btn-sm" %>
+                  <%= link_to 'Edit', edit_troop_path(troop), :class=> "btn btn-warning btn-sm" %>
+                  <%= link_to 'Delete', troop_path(troop),
+                  method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+      </table>
+      </div>
+      <div class="col-lg-2">
+        <div class="row-fluid">
+          <div class="col-lg-12 text-center">
+              <%= link_to 'New troop', new_troop_path, :class=> "btn btn-success" %>
+            </button>
+          </div>
+        </div>
+        <hr>
+        <div class="row-fluid">
+          <div class="col-lg-12 text-center">
+            The total cost to train all your troops is: <strong><%= Troop.sum("costToTrain") %></strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

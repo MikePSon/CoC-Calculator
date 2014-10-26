@@ -1,21 +1,46 @@
-<h1>Newest ready to ride or die troops</h1>
-<p>
-  <strong>Type:</strong>
-  <%= @troop.typeoftroop %>
-</p>
- 
-<p>
-  <strong>Quantity:</strong>
-  <%= @troop.level %>
-</p>
+<%= javascript_include_tag('math') %>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Clan Calculator</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a target="_blank" href="http://www.clashofclansbuilder.com">Base Builder</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
-<p>
-  <strong>Level:</strong>
-  <%= @troop.quantity %>
-</p>
-
-<p>
-  <strong>Cost To Train:</strong>
-  <%= @troop.costToTrain %>
-</p>
-<%= link_to 'Back', troops_path %>
+<body>
+	<div class="container">
+  		<h1>Newest ready to ride or die troops</h1>
+  		<div class="row-fluid">
+  			<div class="col-lg-12">
+  				<strong>Type:</strong>
+  				<%= @troop.typeoftroop %>
+			</div>
+			<div class="col-lg-12">
+  				<strong>Quantity:</strong>
+  				<%= @troop.level %>
+			</div>
+			<div class="col-lg-12">
+  				<strong>Level:</strong>
+  				<%= @troop.quantity %>
+			</div>
+			<div class="col-lg-12" style="margin-bottom: 20px">
+  				<strong>Cost To Train:</strong>
+  				<%= @troop.costToTrain %>
+			</div>
+			<%= link_to 'Back', troops_path, :class=> "btn btn-info" %>
+		</div>
+	</div>
+</body>
